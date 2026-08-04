@@ -18,7 +18,13 @@ class _MyHomePageState extends State<MyHomePage> {
     final url = Uri.parse("https://dummyjson.com/products/1");// alada vabe store kore niyechi
 
    final response = await http.get(url);
-   print(response.body);
+   if (response.statusCode == 200){
+     print("Success !");
+     print(response.body);
+   } else{
+     print("Somewhere is failed ");
+   }
+
   }
 
   @override
