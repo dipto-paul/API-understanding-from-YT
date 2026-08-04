@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -13,30 +12,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  Future fetchData() async{
+  List<dynamic> posts = [];
+  Future fetchData() async {
+    final url = Uri.parse(
+      "https://dummyjson.com/products/1",
+    ); // alada vabe store kore niyechi
 
-    final url = Uri.parse("https://dummyjson.com/products/1");// alada vabe store kore niyechi
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      print("Success !");
 
-   final response = await http.get(url);
-   if (response.statusCode == 200){
-     print("Success !");
-     print(response.body);
-   } else{
-     print("Somewhere is failed ");
-   }
+      print(response.body);
 
+      final jsonData = jsonDecode(response.body); //String data ke Json e convert
+      print(jsonData);
+    } else {
+      print("Somewhere is failed ");
+    }
   }
 
-  @override
-  void initState() { // lifecycle theke niye asha hoyeche
-    super.initState();// screen eikhan theke suru always
-    fetchData();
 
+
+  @override
+  void initState() {
+    // lifecycle theke niye asha hoyeche
+    super.initState(); // screen eikhan theke suru always
+    fetchData();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
@@ -44,10 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("API understanding from YT"),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Center(
-
-      ),
-
+      body: Center(),
     );
   }
 }
