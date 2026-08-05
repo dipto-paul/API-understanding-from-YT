@@ -12,10 +12,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<dynamic> posts = [];
+  List<dynamic> posts = [];// fetchData r bahire api use korar jonno eita neua
   Future fetchData() async {
     final url = Uri.parse(
-      "https://dummyjson.com/products/1",
+      "https://dummyjson.com/products",
     ); // alada vabe store kore niyechi
 
     final response = await http.get(url);
@@ -25,11 +25,11 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response.body);
 
       final jsonData = jsonDecode(response.body); //String data ke Json e convert
-      print(jsonData);
+      print(jsonData['products'].length);
 
-      posts = jsonData as List;
+      posts = jsonData['products'] as List;
 
-      print(posts);
+     // print(posts);
 
     } else {
       print("Somewhere is failed ");
@@ -54,7 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("API understanding from YT"),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Center(),
+      body: ListView.builder(
+        itemCount: posts.length,
+          itemBuilder: (_, index){
+          return Card(
+            child: ListTile(
+
+              title: Text(posts[index]['title']),// sob gula product er title dekhabe
+            ),
+          );
+      },
+      )
     );
   }
 }
