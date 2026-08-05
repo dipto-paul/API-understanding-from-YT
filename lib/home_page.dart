@@ -26,6 +26,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
       final jsonData = jsonDecode(response.body); //String data ke Json e convert
       print(jsonData);
+
+      posts = jsonData as List;
+
+      print(posts);
+
     } else {
       print("Somewhere is failed ");
     }
