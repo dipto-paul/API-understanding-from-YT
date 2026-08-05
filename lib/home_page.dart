@@ -49,9 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 10,
+        elevation: 1,
         centerTitle: true,
-        title: Text("API understanding from YT"),
+        title: Text("API understanding using Postman", style: TextStyle(fontWeight: FontWeight.bold),),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: ListView.builder(
@@ -59,8 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (_, index){
           return Card(
             child: ListTile(
-
-              title: Text(posts[index]['title']),// sob gula product er title dekhabe
+              leading: Image.network(posts[index]['thumbnail']),
+              title: Text(posts[index]['title'], style: TextStyle(fontWeight: FontWeight.bold),),// sob gula product er title dekhabe
+              subtitle: Text(posts[index]['description']),
             ),
           );
       },
