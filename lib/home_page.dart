@@ -41,8 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   @override
-  void initState() {
-    // lifecycle theke niye asha hoyeche
+  void initState() {// lifecycle theke niye asha hoyeche
     super.initState(); // screen eikhan theke suru always
     fetchData();
   }
