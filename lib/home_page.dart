@@ -13,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<dynamic> posts = [];// fetchData r bahire api use korar jonno eita neua
+
   Future fetchData() async {
     final url = Uri.parse(
       "https://dummyjson.com/products",
@@ -25,14 +26,15 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response.body);
 
       final jsonData = jsonDecode(response.body); //String data ke Json e convert
+
       print(jsonData['products'].length);
 
-      posts = jsonData['products'] as List;
+      posts = jsonData['products'] as List; //map data ke list e convert korar jonno as list
 
      // print(posts);
 
     } else {
-      print("Somewhere is failed ");
+      print("Somewhere is failed , please find the problem");
     }
   }
 
@@ -56,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView.builder(
         itemCount: posts.length,
-          itemBuilder: (_, index){
+          itemBuilder: (_, index){ // (_) means context
           return Card(
             child: ListTile(
               leading: Image.network(posts[index]['thumbnail']),
