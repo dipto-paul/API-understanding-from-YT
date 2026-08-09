@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView.builder(
         itemCount: posts.length,
-          itemBuilder: (_, index){ // (_) means contexxt
+          itemBuilder: (_, index){ // (_) means context
           return Card(
             child: ListTile(
               leading: Image.network(posts[index]['thumbnail']),
